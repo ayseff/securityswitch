@@ -37,7 +37,9 @@
     <Reference Include="System.Web" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Configuration\ItemSetting.cs" />
+    <Compile Include="Configuration\PathSetting.cs" />
+    <Compile Include="Configuration\PathSettingCollection.cs" />
+    <Compile Include="Configuration\RequestSecurity.cs" />
     <Compile Include="Configuration\Settings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
