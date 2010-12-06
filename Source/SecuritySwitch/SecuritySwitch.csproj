@@ -37,11 +37,25 @@
     <Reference Include="System.Web" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstractions\HttpBrowserCapabilitiesBase.cs" />
+    <Compile Include="Abstractions\HttpFileCollectionBase.cs" />
+    <Compile Include="Abstractions\HttpPostedFileBase.cs" />
+    <Compile Include="Abstractions\HttpRequestBase.cs" />
+    <Compile Include="Abstractions\HttpRequestWrapper.cs" />
+    <Compile Include="Configuration\ElementNames.cs" />
     <Compile Include="Configuration\PathSetting.cs" />
     <Compile Include="Configuration\PathSettingCollection.cs" />
-    <Compile Include="Configuration\RequestSecurity.cs" />
+    <Compile Include="Configuration\Enums.cs" />
     <Compile Include="Configuration\Settings.cs" />
+    <Compile Include="ExactPathMatcher.cs" />
+    <Compile Include="IPathMatcher.cs" />
+    <Compile Include="IRequestEvaluator.cs" />
+    <Compile Include="PathMatcherFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RegexPathMatcher.cs" />
+    <Compile Include="RequestEvaluator.cs" />
+    <Compile Include="SecuritySwitchModule.cs" />
+    <Compile Include="StartsWithPathMatcher.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
