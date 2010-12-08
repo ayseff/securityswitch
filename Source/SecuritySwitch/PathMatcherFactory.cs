@@ -10,13 +10,16 @@ namespace SecuritySwitch {
 	/// A factory for PathMatchers.
 	/// </summary>
 	internal static class PathMatcherFactory {
+		/// <summary>
+		/// Gets the cached path matchers.
+		/// </summary>
 		private static IDictionary<PathMatchType, IPathMatcher> CachedMatchers {
 			get {
 				var cachedMatchers =
-					HttpContext.Current.Items["SecuritySwitch.Matchers"] as IDictionary<PathMatchType, IPathMatcher>;
+					HttpContext.Current.Items[CachedMatchers] as IDictionary<PathMatchType, IPathMatcher>;
 				if (cachedMatchers == null) {
 					cachedMatchers = new Dictionary<PathMatchType, IPathMatcher>();
-					HttpContext.Current.Items.Add("SecuritySwitch.Matchers", cachedMatchers);
+					HttpContext.Current.Items.Add(CachedMatchers, cachedMatchers);
 				}
 
 				return cachedMatchers;
