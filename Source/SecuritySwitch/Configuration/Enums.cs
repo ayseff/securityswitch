@@ -30,9 +30,9 @@
 	/// </summary>
 	public enum PathMatchType {
 		/// <summary>
-		/// A regular expression is used to match any request paths for action.
+		/// An exact match with a request path is needed for action to be considered.
 		/// </summary>
-		Regex,
+		Exact,
 
 		/// <summary>
 		/// The start of request paths are matched against (e.g. ~/Administration/).
@@ -42,9 +42,13 @@
 		StartsWith,
 
 		/// <summary>
-		/// An exact match with a request path is needed for action to be considered.
+		/// A regular expression is used to match any request paths for action.
 		/// </summary>
-		Exact
+		Regex
+
+		// * Perhaps the Smart type will match a full path and any part of the query string provided without requiring 
+		// * all params and the exact order of each.
+		//Smart
 	}
 
 	/// <summary>

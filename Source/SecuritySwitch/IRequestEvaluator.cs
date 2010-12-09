@@ -12,6 +12,9 @@ namespace SecuritySwitch {
 		/// </summary>
 		/// <param name="request">The request to evaluate.</param>
 		/// <param name="settings">The settings to use for evaluation.</param>
-		void Evaluate(HttpRequestBase request, Settings settings);
+		/// <return>
+		/// A RequestSecurity value indicating the security the evaluated request should be under.
+		/// </return>
+		RequestSecurity Evaluate(HttpRequestBase request, Settings settings);
 	}
 }

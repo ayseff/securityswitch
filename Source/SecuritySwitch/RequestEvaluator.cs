@@ -14,14 +14,14 @@ namespace SecuritySwitch {
 		/// </summary>
 		/// <param name="request">The request to evaluate.</param>
 		/// <param name="settings">The settings to use for evaluation.</param>
-		public void Evaluate(HttpRequestBase request, Settings settings) {
+		/// <return>
+		/// A RequestSecurity value indicating the security the evaluated request should be under.
+		/// </return>
+		public RequestSecurity Evaluate(HttpRequestBase request, Settings settings) {
 			// Test if the request matches the configured mode.
 			if (!RequestMatchesMode(request, settings.Mode)) {
-				return;
+				return RequestSecurity.Ignore;
 			}
-
-			// Any non-matching request should default to Insecure.
-			var security = RequestSecurity.Insecure;
 
 			// Find any matching path setting for the request.
 			var requestPath = request.Path;
@@ -29,24 +29,14 @@ namespace SecuritySwitch {
 				// Get an appropriate path matcher and test the request's path for a match.
 				var matcher = PathMatcherFactory.GetPathMatcher(pathSetting.MatchType);
 				if (matcher.IsMatch(requestPath, pathSetting.Path, pathSetting.IgnoreCase)) {
-					security = pathSetting.Security;
+					return pathSetting.Security;
 				}
 			}
 
-			// Ensure the request matches the determined security.
-			EnsureRequestMatchesSecurity(request, security, settings);
+			// Any non-matching request should default to Insecure.
+			return RequestSecurity.Insecure;
 		}
 
-
-		/// <summary>
-		/// Ensures the specified request is being accessed by the proper protocol; redirecting as necessary.
-		/// </summary>
-		/// <param name="request">The request to ensure proper access for.</param>
-		/// <param name="security">The security setting to match.</param>
-		/// <param name="settings">The settings used for any redirection.</param>
-		private static void EnsureRequestMatchesSecurity(HttpRequestBase request, RequestSecurity security, Settings settings) {
-			throw new NotImplementedException();
-		}
 
 		/// <summary>
 		/// Tests the given request to see if it matches the specified mode.

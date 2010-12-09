@@ -61,9 +61,21 @@ namespace SecuritySwitch {
 				return;
 			}
 
+			// Wrap the current request and response (for testability).
+			HttpRequestBase wrappedRequest = new HttpRequestWrapper(context.Request);
+			HttpResponseBase wrappedResponse = new HttpResponseWrapper(context.Response);
+
 			// Evaluate this request with the configured settings.
 			var evaluator = RequestEvaluatorFactory.GetRequestEvaluator();
-			evaluator.Evaluate(new HttpRequestWrapper(context.Request), settings);
+			var expectedSecurity = evaluator.Evaluate(wrappedRequest, settings);
+			if (expectedSecurity == RequestSecurity.Ignore) {
+				// No action is needed for a result of Ignore.
+				return;
+			}
+
+			// Ensure the request matches the expected security.
+			var enforcer = SecurityEnforcerFactory.GetSecurityEnforcer();
+			enforcer.EnsureRequestMatchesSecurity(wrappedRequest, wrappedResponse, expectedSecurity, settings);
 		}
 
 
