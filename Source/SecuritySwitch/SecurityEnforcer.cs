@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 
 using SecuritySwitch.Abstractions;
 using SecuritySwitch.Configuration;
@@ -7,45 +8,45 @@ using SecuritySwitch.Configuration;
 namespace SecuritySwitch {
 	public class SecurityEnforcer : ISecurityEnforcer {
 		/// <summary>
-		/// Ensures the specified request is being accessed by the proper protocol; redirecting as necessary.
+		/// Gets any URI that ensures the specified request is being accessed by the proper protocol.
 		/// </summary>
 		/// <param name="request">The request to ensure proper access for.</param>
 		/// <param name="response">The response to use if a redirection or other output is necessary.</param>
 		/// <param name="security">The security setting to match.</param>
 		/// <param name="settings">The settings used for any redirection.</param>
-		public void EnsureRequestMatchesSecurity(HttpRequestBase request, HttpResponseBase response, RequestSecurity security, Settings settings) {
+		/// <returns>A URI that ensures the requested resources matches the specified security; or null if the current request already does.</returns>
+		public string GetUriForMatchedSecurityRequest(HttpRequestBase request, HttpResponseBase response, RequestSecurity security, Settings settings) {
 			string targetUri = null;
 
-			if (security == RequestSecurity.Secure && !request.IsSecureConnection) {
-				// Build a URL for the secure version of the current request.
-				if (string.IsNullOrEmpty(settings.BaseSecureUri)) {
-					targetUri = SwitchProtocolScheme(Uri.UriSchemeHttps + Uri.SchemeDelimiter + request.Url.Authority + request.RawUrl);
+			if (security == RequestSecurity.Secure && !request.IsSecureConnection || security == RequestSecurity.Insecure && request.IsSecureConnection) {
+				// Determine the target protocol and get any base target URI from the settings.
+				string targetProtocolScheme;
+				string baseTargetUri;
+				if (security == RequestSecurity.Secure) {
+					targetProtocolScheme = Uri.UriSchemeHttps;
+					baseTargetUri = settings.BaseSecureUri;
+				} else {
+					targetProtocolScheme = Uri.UriSchemeHttp;
+					baseTargetUri = settings.BaseInsecureUri;
 				}
 
+				if (string.IsNullOrEmpty(baseTargetUri)) {
+					// If there is no base target URI, just switch the protocol scheme of the current request's URI.
+					// * The RawUrl property maintains any cookieless session ID that may be present, thus eliminating the need to call ApplyAppPathModifier.
+					targetUri = targetProtocolScheme + Uri.SchemeDelimiter + request.Url.Authority + request.RawUrl;
+				} else {
+					// Build the appropriate URI.
+					var uri = new StringBuilder(baseTargetUri);
+					uri.Append(request.CurrentExecutionFilePath).Append(request.Url.Query);
 
-			} else if (security == RequestSecurity.Insecure && request.IsSecureConnection) {
-				// Build a URL for the insecure version of the current request.
-				if (string.IsNullOrEmpty(settings.BaseInsecureUri)) {
-					targetUri = SwitchProtocolScheme(Uri.UriSchemeHttp + Uri.SchemeDelimiter + request.Url.Authority + request.RawUrl);
+					// Normalize the URI.
+					uri.Replace("//", "/");
+
+					targetUri = uri.ToString();
 				}
 			}
 
-
-			if (targetUri != null) {
-				// Redirect to any specified target URI.
-				response.Redirect(targetUri);
-			}
-		}
-
-
-		/// <summary>
-		/// Switches the protocol scheme for the specified URI (from HTTP/HTTPS to the other).
-		/// </summary>
-		/// <param name="uri">The URI to switch protocol schemes for.</param>
-		/// <returns>The same URI with the protocol scheme switched to HTTPS if the original was HTTP or vice versa.</returns>
-		private string SwitchProtocolScheme(string uri) {
-			var protocolScheme = (uri.StartsWith(Uri.UriSchemeHttps) ? Uri.UriSchemeHttps : Uri.UriSchemeHttp);
-			return uri.Replace(protocolScheme, (protocolScheme == Uri.UriSchemeHttp ? Uri.UriSchemeHttps : Uri.UriSchemeHttp));
+			return targetUri;
 		}
 	}
 }

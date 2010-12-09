@@ -75,7 +75,10 @@ namespace SecuritySwitch {
 
 			// Ensure the request matches the expected security.
 			var enforcer = SecurityEnforcerFactory.GetSecurityEnforcer();
-			enforcer.EnsureRequestMatchesSecurity(wrappedRequest, wrappedResponse, expectedSecurity, settings);
+			var targetUri = enforcer.GetUriForMatchedSecurityRequest(wrappedRequest, wrappedResponse, expectedSecurity, settings);
+
+			// Redirect, if necessary.
+
 		}
 
 

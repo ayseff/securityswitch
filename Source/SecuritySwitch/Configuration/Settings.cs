@@ -39,16 +39,6 @@ namespace SecuritySwitch.Configuration {
 		}
 
 		/// <summary>
-		/// Gets or sets a flag indicating whether or not to maintain the current path when redirecting
-		/// to a different host.
-		/// </summary>
-		[ConfigurationProperty(ElementNames.MaintainPath, DefaultValue = true)]
-		public bool MaintainPath {
-			get { return (bool)this[ElementNames.MaintainPath]; }
-			set { this[ElementNames.MaintainPath] = value; }
-		}
-
-		/// <summary>
 		/// Gets or sets the mode indicating how the secure switch settings are handled.
 		/// </summary>
 		[ConfigurationProperty(ElementNames.Mode, DefaultValue = Mode.On)]
@@ -86,5 +76,23 @@ namespace SecuritySwitch.Configuration {
 		}
 
 		#endregion
+
+		protected override void PostDeserialize() {
+			base.PostDeserialize();
+
+			// Validate the settings.
+			
+			var isBaseInsecureUriEmpty = string.IsNullOrEmpty(BaseInsecureUri);
+			var isBaseSecureUriEmpty = string.IsNullOrEmpty(BaseSecureUri);
+			if (!isBaseInsecureUriEmpty && isBaseSecureUriEmpty || isBaseInsecureUriEmpty && !isBaseSecureUriEmpty) {
+				throw new ConfigurationErrorsException(
+					"If either baseInsecureUri or baseSecureUri are specified, then both must be provided.");
+			}
+
+			if (WarningBypassMode == SecurityWarningBypassMode.BypassWithQueryParam && string.IsNullOrEmpty(BypassQueryParamName)) {
+				throw new ConfigurationErrorsException(
+					"The BypassQueryParamName must be provided if WarningBypassMode is set to 'BypassWithQueryParam'.");
+			}
+		}
 	}
 }
