@@ -2,7 +2,7 @@ using SecuritySwitch.Abstractions;
 using SecuritySwitch.Configuration;
 
 
-namespace SecuritySwitch {
+namespace SecuritySwitch.Evaluation {
 	/// <summary>
 	/// A contract for an enforcer of request security.
 	/// </summary>

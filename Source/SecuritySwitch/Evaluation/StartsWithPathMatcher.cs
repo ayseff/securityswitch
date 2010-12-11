@@ -1,8 +1,11 @@
-namespace SecuritySwitch {
+﻿using System.Globalization;
+
+
+namespace SecuritySwitch.Evaluation {
 	/// <summary>
-	/// The contract for a path matcher.
+	/// An implementation of IPathMatcher that matches the pattern if the path starts with it; accounting for variances in case if indicated.
 	/// </summary>
-	public interface IPathMatcher {
+	public class StartsWithPathMatcher : IPathMatcher {
 		/// <summary>
 		/// Determines whether the specified path is a match to the provided pattern.
 		/// </summary>
@@ -12,6 +15,8 @@ namespace SecuritySwitch {
 		/// <returns>
 		/// 	<c>true</c> if the specified path is a match with the pattern; otherwise, <c>false</c>.
 		/// </returns>
-		bool IsMatch(string path, string pattern, bool ignoreCase);
+		public bool IsMatch(string path, string pattern, bool ignoreCase) {
+			return path.StartsWith(pattern, ignoreCase, CultureInfo.InvariantCulture);
+		}
 	}
 }

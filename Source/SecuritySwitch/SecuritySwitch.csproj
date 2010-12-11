@@ -53,20 +53,22 @@
     <Compile Include="Configuration\Enums.cs" />
     <Compile Include="Configuration\Settings.cs" />
     <Compile Include="BeforeEvaluateRequestEventArgs.cs" />
-    <Compile Include="SecurityEnforcerFactory.cs" />
-    <Compile Include="ExactPathMatcher.cs" />
-    <Compile Include="IPathMatcher.cs" />
-    <Compile Include="IRequestEvaluator.cs" />
-    <Compile Include="ISecurityEnforcer.cs" />
-    <Compile Include="KeyNames.cs" />
-    <Compile Include="PathMatcherFactory.cs" />
+    <Compile Include="Redirection\ILocationRedirector.cs" />
+    <Compile Include="Redirection\LocationRedirector.cs" />
+    <Compile Include="Redirection\LocationRedirectorFactory.cs" />
+    <Compile Include="Evaluation\SecurityEnforcerFactory.cs" />
+    <Compile Include="Evaluation\ExactPathMatcher.cs" />
+    <Compile Include="Evaluation\IPathMatcher.cs" />
+    <Compile Include="Evaluation\IRequestEvaluator.cs" />
+    <Compile Include="Evaluation\ISecurityEnforcer.cs" />
+    <Compile Include="Evaluation\PathMatcherFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RegexPathMatcher.cs" />
-    <Compile Include="RequestEvaluator.cs" />
-    <Compile Include="RequestEvaluatorFactory.cs" />
-    <Compile Include="SecurityEnforcer.cs" />
+    <Compile Include="Evaluation\RegexPathMatcher.cs" />
+    <Compile Include="Evaluation\RequestEvaluator.cs" />
+    <Compile Include="Evaluation\RequestEvaluatorFactory.cs" />
+    <Compile Include="Evaluation\SecurityEnforcer.cs" />
     <Compile Include="SecuritySwitchModule.cs" />
-    <Compile Include="StartsWithPathMatcher.cs" />
+    <Compile Include="Evaluation\StartsWithPathMatcher.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

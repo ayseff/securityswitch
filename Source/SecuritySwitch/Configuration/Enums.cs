@@ -71,24 +71,4 @@
 		/// </summary>
 		Ignore
 	}
-
-	/// <summary>
-	/// The different modes for bypassing security warnings.
-	/// </summary>
-	public enum SecurityWarningBypassMode {
-		/// <summary>
-		/// Always bypass security warnings when switching to an unencrypted page.
-		/// </summary>
-		AlwaysBypass,
-
-		/// <summary>
-		/// Only bypass security warnings when switching to an unencrypted page if the proper query parameter is present.
-		/// </summary>
-		BypassWithQueryParam,
-
-		/// <summary>
-		/// Never bypass security warnings when switching to an unencrypted page.
-		/// </summary>
-		NeverBypass
-	}
 }

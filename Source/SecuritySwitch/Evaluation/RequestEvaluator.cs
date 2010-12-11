@@ -1,10 +1,8 @@
-﻿using System;
-
-using SecuritySwitch.Abstractions;
+﻿using SecuritySwitch.Abstractions;
 using SecuritySwitch.Configuration;
 
 
-namespace SecuritySwitch {
+namespace SecuritySwitch.Evaluation {
 	/// <summary>
 	/// The default implementation of IRequestEvaluator.
 	/// </summary>

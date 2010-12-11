@@ -29,13 +29,13 @@ namespace SecuritySwitch.Configuration {
 		}
 
 		/// <summary>
-		/// Gets or sets the name of the query parameter that will indicate to the module to bypass
-		/// any security warning if WarningBypassMode is BypassWithQueryParam.
+		/// Gets or sets the bypass mode indicating whether or not to bypass security warnings
+		/// when switching to a unencrypted page.
 		/// </summary>
-		[ConfigurationProperty(ElementNames.BypassQueryParamName)]
-		public string BypassQueryParamName {
-			get { return (string)this[ElementNames.BypassQueryParamName]; }
-			set { this[ElementNames.BypassQueryParamName] = value; }
+		[ConfigurationProperty(ElementNames.BypassSecurityWarning, DefaultValue = false)]
+		public bool BypassSecurityWarning {
+			get { return (bool)this[ElementNames.BypassSecurityWarning]; }
+			set { this[ElementNames.BypassSecurityWarning] = value; }
 		}
 
 		/// <summary>
@@ -55,17 +55,7 @@ namespace SecuritySwitch.Configuration {
 			get { return (PathSettingCollection)this[ElementNames.Paths]; }
 		}
 
-		/// <summary>
-		/// Gets or sets the bypass mode indicating whether or not to bypass security warnings
-		/// when switching to a unencrypted page.
-		/// </summary>
-		[ConfigurationProperty(ElementNames.WarningBypassMode, DefaultValue = SecurityWarningBypassMode.BypassWithQueryParam)]
-		public SecurityWarningBypassMode WarningBypassMode {
-			get { return (SecurityWarningBypassMode)this[ElementNames.WarningBypassMode]; }
-			set { this[ElementNames.WarningBypassMode] = value; }
-		}
-
-
+		
 		/// <summary>
 		/// This property is for internal use and is not meant to be set.
 		/// </summary>
@@ -87,11 +77,6 @@ namespace SecuritySwitch.Configuration {
 			if (!isBaseInsecureUriEmpty && isBaseSecureUriEmpty || isBaseInsecureUriEmpty && !isBaseSecureUriEmpty) {
 				throw new ConfigurationErrorsException(
 					"If either baseInsecureUri or baseSecureUri are specified, then both must be provided.");
-			}
-
-			if (WarningBypassMode == SecurityWarningBypassMode.BypassWithQueryParam && string.IsNullOrEmpty(BypassQueryParamName)) {
-				throw new ConfigurationErrorsException(
-					"The BypassQueryParamName must be provided if WarningBypassMode is set to 'BypassWithQueryParam'.");
 			}
 		}
 	}

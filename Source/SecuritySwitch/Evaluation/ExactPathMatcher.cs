@@ -1,11 +1,11 @@
-﻿using System.Text.RegularExpressions;
+﻿using System;
 
 
-namespace SecuritySwitch {
+namespace SecuritySwitch.Evaluation {
 	/// <summary>
-	/// An implementation of IPathMatcher that matches the pattern as a regex against the path; accounting for variances in case if indicated.
+	/// An implementation of IPathMatcher that only matches the exact pattern; accounting for variances in case if indicated.
 	/// </summary>
-	public class RegexPathMatcher : IPathMatcher {
+	public class ExactPathMatcher : IPathMatcher {
 		/// <summary>
 		/// Determines whether the specified path is a match to the provided pattern.
 		/// </summary>
@@ -16,8 +16,7 @@ namespace SecuritySwitch {
 		/// 	<c>true</c> if the specified path is a match with the pattern; otherwise, <c>false</c>.
 		/// </returns>
 		public bool IsMatch(string path, string pattern, bool ignoreCase) {
-			const RegexOptions Options = (RegexOptions.CultureInvariant | RegexOptions.Singleline);
-			return Regex.IsMatch(path, pattern, (ignoreCase ? Options | RegexOptions.IgnoreCase : Options));
+			return path.Equals(pattern, (ignoreCase ? StringComparison.InvariantCultureIgnoreCase : StringComparison.InvariantCulture));
 		}
 	}
 }

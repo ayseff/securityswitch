@@ -1,11 +1,8 @@
-﻿using System;
-
-
-namespace SecuritySwitch {
+namespace SecuritySwitch.Evaluation {
 	/// <summary>
-	/// An implementation of IPathMatcher that only matches the exact pattern; accounting for variances in case if indicated.
+	/// The contract for a path matcher.
 	/// </summary>
-	public class ExactPathMatcher : IPathMatcher {
+	public interface IPathMatcher {
 		/// <summary>
 		/// Determines whether the specified path is a match to the provided pattern.
 		/// </summary>
@@ -15,8 +12,6 @@ namespace SecuritySwitch {
 		/// <returns>
 		/// 	<c>true</c> if the specified path is a match with the pattern; otherwise, <c>false</c>.
 		/// </returns>
-		public bool IsMatch(string path, string pattern, bool ignoreCase) {
-			return path.Equals(pattern, (ignoreCase ? StringComparison.InvariantCultureIgnoreCase : StringComparison.InvariantCulture));
-		}
+		bool IsMatch(string path, string pattern, bool ignoreCase);
 	}
 }

@@ -4,6 +4,7 @@ using System.Web.Configuration;
 
 using SecuritySwitch.Abstractions;
 using SecuritySwitch.Configuration;
+using SecuritySwitch.Evaluation;
 
 
 namespace SecuritySwitch {
@@ -11,6 +12,9 @@ namespace SecuritySwitch {
 	/// Evaluates each request for the need to switch to HTTP/HTTPS.
 	/// </summary>
 	public class SecuritySwitchModule : IHttpModule {
+		const string CachedSettingsKey = "SecuritySwitch.Settings";
+
+
 		/// <summary>
 		/// Initializes a module and prepares it to handle requests.
 		/// </summary>
@@ -30,10 +34,14 @@ namespace SecuritySwitch {
 			}
 
 			// Store the settings in application state for cached access on each request.
-			context.Application[KeyNames.CachedSettings] = settings;
+			context.Application[CachedSettingsKey] = settings;
 					
 			// Hook the application's AcquireRequestState event.
-			// * This ensures that the session ID is available for cookie-less session processing.
+			// * This ensures that the session ID is available for cookie-less session processing. 
+			// * It just is not possible (that I know of) to get the original URL requested when cookie-less sessions are used.
+			//   The Framework uses RewritePath when the HttpContext is created to strip the Session ID from the request's 
+			//   Path/Url. The rewritten URL is actually stored in an internal field of HttpRequest; short of reflection, 
+			//   it's not attainable.
 			context.AcquireRequestState += ProcessRequest;
 		}
 
@@ -51,7 +59,7 @@ namespace SecuritySwitch {
 			}
 
 			// Retrieve the settings from application state.
-			var settings = (Settings)context.Application[KeyNames.CachedSettings];
+			var settings = (Settings)context.Application[CachedSettingsKey];
 
 			// Raise the BeforeEvaluateRequest event and check if a subscriber indicated to cancel the 
 			// evaluation of the current request.
@@ -75,10 +83,15 @@ namespace SecuritySwitch {
 
 			// Ensure the request matches the expected security.
 			var enforcer = SecurityEnforcerFactory.GetSecurityEnforcer();
-			var targetUri = enforcer.GetUriForMatchedSecurityRequest(wrappedRequest, wrappedResponse, expectedSecurity, settings);
+			var targetUrl = enforcer.GetUriForMatchedSecurityRequest(wrappedRequest, wrappedResponse, expectedSecurity, settings);
+			if (string.IsNullOrEmpty(targetUrl)) {
+				// No action is needed if the security enforcer did not return a target URL.
+				return;
+			}
 
-			// Redirect, if necessary.
-
+			// Redirect.
+			var redirector = LocationRedirectorFactory.GetLocationRedirector();
+			redirector.Redirect(wrappedResponse, HttpUtility.HtmlAttributeEncode(targetUrl), settings.BypassSecurityWarning);
 		}
 
 

@@ -5,7 +5,10 @@ using SecuritySwitch.Abstractions;
 using SecuritySwitch.Configuration;
 
 
-namespace SecuritySwitch {
+namespace SecuritySwitch.Evaluation {
+	/// <summary>
+	/// The default implementation of ISecurityEnforcer.
+	/// </summary>
 	public class SecurityEnforcer : ISecurityEnforcer {
 		/// <summary>
 		/// Gets any URI that ensures the specified request is being accessed by the proper protocol.
@@ -14,39 +17,39 @@ namespace SecuritySwitch {
 		/// <param name="response">The response to use if a redirection or other output is necessary.</param>
 		/// <param name="security">The security setting to match.</param>
 		/// <param name="settings">The settings used for any redirection.</param>
-		/// <returns>A URI that ensures the requested resources matches the specified security; or null if the current request already does.</returns>
+		/// <returns>A URL that ensures the requested resources matches the specified security; or null if the current request already does.</returns>
 		public string GetUriForMatchedSecurityRequest(HttpRequestBase request, HttpResponseBase response, RequestSecurity security, Settings settings) {
-			string targetUri = null;
+			string targetUrl = null;
 
 			if (security == RequestSecurity.Secure && !request.IsSecureConnection || security == RequestSecurity.Insecure && request.IsSecureConnection) {
-				// Determine the target protocol and get any base target URI from the settings.
+				// Determine the target protocol and get any base target URL from the settings.
 				string targetProtocolScheme;
-				string baseTargetUri;
+				string baseTargetUrl;
 				if (security == RequestSecurity.Secure) {
 					targetProtocolScheme = Uri.UriSchemeHttps;
-					baseTargetUri = settings.BaseSecureUri;
+					baseTargetUrl = settings.BaseSecureUri;
 				} else {
 					targetProtocolScheme = Uri.UriSchemeHttp;
-					baseTargetUri = settings.BaseInsecureUri;
+					baseTargetUrl = settings.BaseInsecureUri;
 				}
 
-				if (string.IsNullOrEmpty(baseTargetUri)) {
+				if (string.IsNullOrEmpty(baseTargetUrl)) {
 					// If there is no base target URI, just switch the protocol scheme of the current request's URI.
-					// * The RawUrl property maintains any cookieless session ID that may be present, thus eliminating the need to call ApplyAppPathModifier.
-					targetUri = targetProtocolScheme + Uri.SchemeDelimiter + request.Url.Authority + request.RawUrl;
+					// * Account for cookie-less sessions by applying the application modifier.
+					targetUrl = targetProtocolScheme + Uri.SchemeDelimiter + request.Url.Authority + response.ApplyAppPathModifier(request.RawUrl);
 				} else {
 					// Build the appropriate URI.
-					var uri = new StringBuilder(baseTargetUri);
+					var uri = new StringBuilder(baseTargetUrl);
 					uri.Append(request.CurrentExecutionFilePath).Append(request.Url.Query);
 
 					// Normalize the URI.
 					uri.Replace("//", "/");
 
-					targetUri = uri.ToString();
+					targetUrl = uri.ToString();
 				}
 			}
 
-			return targetUri;
+			return targetUrl;
 		}
 	}
 }

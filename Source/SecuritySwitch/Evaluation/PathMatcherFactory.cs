@@ -1,24 +1,27 @@
 using System;
 using System.Collections.Generic;
+using System.Web;
 
 using SecuritySwitch.Configuration;
 
 
-namespace SecuritySwitch {
+namespace SecuritySwitch.Evaluation {
 	/// <summary>
 	/// A factory for PathMatchers.
 	/// </summary>
 	internal static class PathMatcherFactory {
+		const string CachedMatchersKey = "SecuritySwitch.Matchers";
+
 		/// <summary>
 		/// Gets the cached path matchers.
 		/// </summary>
 		private static IDictionary<PathMatchType, IPathMatcher> CachedMatchers {
 			get {
 				var cachedMatchers =
-					HttpContext.Current.Items[CachedMatchers] as IDictionary<PathMatchType, IPathMatcher>;
+					HttpContext.Current.Items[CachedMatchersKey] as IDictionary<PathMatchType, IPathMatcher>;
 				if (cachedMatchers == null) {
 					cachedMatchers = new Dictionary<PathMatchType, IPathMatcher>();
-					HttpContext.Current.Items.Add(CachedMatchers, cachedMatchers);
+					HttpContext.Current.Items.Add(CachedMatchersKey, cachedMatchers);
 				}
 
 				return cachedMatchers;
