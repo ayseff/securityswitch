@@ -7,7 +7,7 @@ namespace SecuritySwitch.Evaluation {
 		/// Gets a security enforcer.
 		/// </summary>
 		/// <returns></returns>
-		internal static ISecurityEnforcer GetSecurityEnforcer() {
+		internal static ISecurityEnforcer Create() {
 			return new SecurityEnforcer();
 		}
 	}

@@ -33,7 +33,7 @@ namespace SecuritySwitch.Evaluation {
 		/// </summary>
 		/// <param name="matchType">The PathMatchType used to determine the appropriate path matcher.</param>
 		/// <returns></returns>
-		internal static IPathMatcher GetPathMatcher(PathMatchType matchType) {
+		internal static IPathMatcher Create(PathMatchType matchType) {
 			// Check the cache first.
 			var cachedMatchers = CachedMatchers;
 			if (cachedMatchers.ContainsKey(matchType)) {

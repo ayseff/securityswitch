@@ -1,4 +1,4 @@
-namespace SecuritySwitch {
+namespace SecuritySwitch.Redirection {
 	/// <summary>
 	/// A factory for ILocationRedirector.
 	/// </summary>
@@ -7,7 +7,7 @@ namespace SecuritySwitch {
 		/// Gets the default location redirector.
 		/// </summary>
 		/// <returns></returns>
-		internal static ILocationRedirector GetLocationRedirector() {
+		internal static ILocationRedirector Create() {
 			return new LocationRedirector();
 		}
 	}

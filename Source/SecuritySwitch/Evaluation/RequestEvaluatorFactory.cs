@@ -4,7 +4,7 @@ namespace SecuritySwitch.Evaluation {
 		/// Gets a request evaluator.
 		/// </summary>
 		/// <returns></returns>
-		internal static IRequestEvaluator GetRequestEvaluator() {
+		internal static IRequestEvaluator Create() {
 			return new RequestEvaluator();
 		}
 	}

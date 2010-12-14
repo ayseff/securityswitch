@@ -25,7 +25,7 @@ namespace SecuritySwitch.Evaluation {
 			var requestPath = request.Path;
 			foreach (PathSetting pathSetting in settings.Paths) {
 				// Get an appropriate path matcher and test the request's path for a match.
-				var matcher = PathMatcherFactory.GetPathMatcher(pathSetting.MatchType);
+				var matcher = PathMatcherFactory.Create(pathSetting.MatchType);
 				if (matcher.IsMatch(requestPath, pathSetting.Path, pathSetting.IgnoreCase)) {
 					return pathSetting.Security;
 				}

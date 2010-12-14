@@ -5,6 +5,7 @@ using System.Web.Configuration;
 using SecuritySwitch.Abstractions;
 using SecuritySwitch.Configuration;
 using SecuritySwitch.Evaluation;
+using SecuritySwitch.Redirection;
 
 
 namespace SecuritySwitch {
@@ -74,7 +75,7 @@ namespace SecuritySwitch {
 			HttpResponseBase wrappedResponse = new HttpResponseWrapper(context.Response);
 
 			// Evaluate this request with the configured settings.
-			var evaluator = RequestEvaluatorFactory.GetRequestEvaluator();
+			var evaluator = RequestEvaluatorFactory.Create();
 			var expectedSecurity = evaluator.Evaluate(wrappedRequest, settings);
 			if (expectedSecurity == RequestSecurity.Ignore) {
 				// No action is needed for a result of Ignore.
@@ -82,7 +83,7 @@ namespace SecuritySwitch {
 			}
 
 			// Ensure the request matches the expected security.
-			var enforcer = SecurityEnforcerFactory.GetSecurityEnforcer();
+			var enforcer = SecurityEnforcerFactory.Create();
 			var targetUrl = enforcer.GetUriForMatchedSecurityRequest(wrappedRequest, wrappedResponse, expectedSecurity, settings);
 			if (string.IsNullOrEmpty(targetUrl)) {
 				// No action is needed if the security enforcer did not return a target URL.
@@ -90,7 +91,7 @@ namespace SecuritySwitch {
 			}
 
 			// Redirect.
-			var redirector = LocationRedirectorFactory.GetLocationRedirector();
+			var redirector = LocationRedirectorFactory.Create();
 			redirector.Redirect(wrappedResponse, HttpUtility.HtmlAttributeEncode(targetUrl), settings.BypassSecurityWarning);
 		}
 
