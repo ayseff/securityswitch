@@ -1,4 +1,12 @@
-﻿using System.Reflection;
+﻿// =================================================================================
+// Copyright © 2004-2011 Matt Sollars
+// All rights reserved.
+// 
+// This code and information is provided "as is" without warranty of any kind,
+// either expressed or implied, including, but not limited to, the implied 
+// warranties of merchantability and/or fitness for a particular purpose.
+// =================================================================================
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
@@ -8,9 +16,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Security Switch")]
 [assembly: AssemblyDescription(".NET libraries for automatically switching between HTTP and HTTPS protocols.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Matt Sollars")]
+[assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("SecuritySwitch")]
-[assembly: AssemblyCopyright("Copyright © Matt Sollars 2010")]
+[assembly: AssemblyCopyright("Copyright © 2004-2011 Matt Sollars")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

@@ -1,5 +1,12 @@
-﻿using System.Reflection;
-using System.Runtime.CompilerServices;
+﻿// =================================================================================
+// Copyright © 2004-2011 Matt Sollars
+// All rights reserved.
+// 
+// This code and information is provided "as is" without warranty of any kind,
+// either expressed or implied, including, but not limited to, the implied 
+// warranties of merchantability and/or fitness for a particular purpose.
+// =================================================================================
+using System.Reflection;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 
@@ -8,9 +15,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Tests")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Microsoft")]
+[assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("Tests")]
-[assembly: AssemblyCopyright("Copyright © Microsoft 2010")]
+[assembly: AssemblyCopyright("Copyright © 2004-2011 Matt Sollars")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

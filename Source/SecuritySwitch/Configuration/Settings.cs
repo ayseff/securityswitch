@@ -1,3 +1,11 @@
+// =================================================================================
+// Copyright © 2004-2011 Matt Sollars
+// All rights reserved.
+// 
+// This code and information is provided "as is" without warranty of any kind,
+// either expressed or implied, including, but not limited to, the implied 
+// warranties of merchantability and/or fitness for a particular purpose.
+// =================================================================================
 using System.Configuration;
 
 
@@ -29,13 +37,25 @@ namespace SecuritySwitch.Configuration {
 		}
 
 		/// <summary>
-		/// Gets or sets the bypass mode indicating whether or not to bypass security warnings
+		/// Gets or sets a flag indicating whether or not to bypass security warnings
 		/// when switching to a unencrypted page.
 		/// </summary>
 		[ConfigurationProperty(ElementNames.BypassSecurityWarning, DefaultValue = false)]
 		public bool BypassSecurityWarning {
 			get { return (bool)this[ElementNames.BypassSecurityWarning]; }
 			set { this[ElementNames.BypassSecurityWarning] = value; }
+		}
+
+		/// <summary>
+		/// Gets or sets a flag indicating whether or not to ignore requests for system handlers (*.axd paths).
+		/// </summary>
+		/// <value>
+		///   <c>true</c> if system handlers should be ignored (*.axd); otherwise, <c>false</c>.
+		/// </value>
+		[ConfigurationProperty(ElementNames.IgnoreSystemHandlers, DefaultValue = true)]
+		public bool IgnoreSystemHandlers {
+			get { return (bool)this[ElementNames.IgnoreSystemHandlers]; }
+			set { this[ElementNames.IgnoreSystemHandlers] = value; }
 		}
 
 		/// <summary>
@@ -71,12 +91,21 @@ namespace SecuritySwitch.Configuration {
 			base.PostDeserialize();
 
 			// Validate the settings.
-			
 			var isBaseInsecureUriEmpty = string.IsNullOrEmpty(BaseInsecureUri);
 			var isBaseSecureUriEmpty = string.IsNullOrEmpty(BaseSecureUri);
 			if (!isBaseInsecureUriEmpty && isBaseSecureUriEmpty || isBaseInsecureUriEmpty && !isBaseSecureUriEmpty) {
 				throw new ConfigurationErrorsException(
 					"If either baseInsecureUri or baseSecureUri are specified, then both must be provided.");
+			}
+
+			// Insert a special PathSetting to ignore system handlers, if indicated.
+			if (IgnoreSystemHandlers) {
+				Paths.Add(new PathSetting {
+					Path = @"\.axd[/\?#]?",
+					MatchType = PathMatchType.Regex,
+					IgnoreCase = true,
+					Security = RequestSecurity.Ignore
+				});
 			}
 		}
 	}

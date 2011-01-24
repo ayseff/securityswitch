@@ -1,7 +1,15 @@
-﻿using SecuritySwitch.Abstractions;
+﻿// =================================================================================
+// Copyright © 2004-2011 Matt Sollars
+// All rights reserved.
+// 
+// This code and information is provided "as is" without warranty of any kind,
+// either expressed or implied, including, but not limited to, the implied 
+// warranties of merchantability and/or fitness for a particular purpose.
+// =================================================================================
+using SecuritySwitch.Abstractions;
 
 
-namespace SecuritySwitch {
+namespace SecuritySwitch.Redirection {
 	/// <summary>
 	/// The default implementation of ILocationRedirector.
 	/// </summary>
@@ -18,7 +26,7 @@ namespace SecuritySwitch {
 				response.Clear();
 
 				// Add a refresh header to the response for the new path.
-				response.AddHeader("Refresh", string.Concat("0;URL=", url));
+				response.AddHeader("Refresh", "0;URL=" + url);
 
 				// Also, add JavaScript to replace the current location as backup.
 				response.Write("<html><head><title></title>");
@@ -28,6 +36,7 @@ namespace SecuritySwitch {
 				response.Write("</head><body></body></html>");
 			} else {
 				// Permanent redirect.
+				// TODO: Make the status code configurable (i.e. permanent vs. temporary).
 				response.StatusCode = 301;
 				response.RedirectLocation = url;
 			}

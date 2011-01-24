@@ -1,4 +1,12 @@
-﻿using System.Configuration;
+﻿// =================================================================================
+// Copyright © 2004-2011 Matt Sollars
+// All rights reserved.
+// 
+// This code and information is provided "as is" without warranty of any kind,
+// either expressed or implied, including, but not limited to, the implied 
+// warranties of merchantability and/or fitness for a particular purpose.
+// =================================================================================
+using System.Configuration;
 
 
 namespace SecuritySwitch.Configuration {
@@ -34,6 +42,22 @@ namespace SecuritySwitch.Configuration {
 
 		#endregion
 
+		/// <summary>
+		/// Adds the specified path setting.
+		/// </summary>
+		/// <param name="pathSetting">The path setting to add.</param>
+		public void Add(PathSetting pathSetting) {
+			BaseAdd(pathSetting);
+		}
+
+		/// <summary>
+		/// Inserts the specified path setting at the index.
+		/// </summary>
+		/// <param name="index">The index location at which to insert the path setting.</param>
+		/// <param name="pathSetting">The path setting to insert.</param>
+		public void Insert(int index, PathSetting pathSetting) {
+			BaseAdd(index, pathSetting);
+		}
 
 		/// <summary>
 		/// Returns the index of a specified path setting in the collection.
@@ -43,6 +67,7 @@ namespace SecuritySwitch.Configuration {
 		public int IndexOf(PathSetting pathSetting) {
 			return (pathSetting != null ? BaseIndexOf(pathSetting) : -1);
 		}
+
 
 		/// <summary>
 		/// When overridden in a derived class, creates a new <see cref="T:System.Configuration.ConfigurationElement"/>.

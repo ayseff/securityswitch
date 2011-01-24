@@ -1,3 +1,11 @@
+// =================================================================================
+// Copyright © 2004-2011 Matt Sollars
+// All rights reserved.
+// 
+// This code and information is provided "as is" without warranty of any kind,
+// either expressed or implied, including, but not limited to, the implied 
+// warranties of merchantability and/or fitness for a particular purpose.
+// =================================================================================
 using System;
 using System.Collections.Generic;
 using System.Web;
@@ -13,30 +21,37 @@ namespace SecuritySwitch.Evaluation {
 		const string CachedMatchersKey = "SecuritySwitch.Matchers";
 
 		/// <summary>
-		/// Gets the cached path matchers.
+		/// Gets any cached path matchers.
 		/// </summary>
 		private static IDictionary<PathMatchType, IPathMatcher> CachedMatchers {
 			get {
-				var cachedMatchers =
-					HttpContext.Current.Items[CachedMatchersKey] as IDictionary<PathMatchType, IPathMatcher>;
+				// If a current HttpContext exists, use it for caching PathMatchers for the current request; otherwise, do not cache them.
+				var currentContext = HttpContext.Current;
+				if (currentContext == null) {
+					return null;
+				}
+
+				// Retrieve any cached matchers for this request; otherwise create a container for them.
+				var cachedMatchers = currentContext.Items[CachedMatchersKey] as IDictionary<PathMatchType, IPathMatcher>;
 				if (cachedMatchers == null) {
 					cachedMatchers = new Dictionary<PathMatchType, IPathMatcher>();
-					HttpContext.Current.Items.Add(CachedMatchersKey, cachedMatchers);
+					currentContext.Items.Add(CachedMatchersKey, cachedMatchers);
 				}
 
 				return cachedMatchers;
 			}
 		}
 
+
 		/// <summary>
-		/// Gets the appropriate path matcher for the specified match type.
+		/// Creates an appropriate path matcher for the specified match type.
 		/// </summary>
 		/// <param name="matchType">The PathMatchType used to determine the appropriate path matcher.</param>
 		/// <returns></returns>
 		internal static IPathMatcher Create(PathMatchType matchType) {
-			// Check the cache first.
+			// Check for cached matchers first.
 			var cachedMatchers = CachedMatchers;
-			if (cachedMatchers.ContainsKey(matchType)) {
+			if (cachedMatchers != null && cachedMatchers.ContainsKey(matchType)) {
 				return cachedMatchers[matchType];
 			}
 
@@ -59,8 +74,10 @@ namespace SecuritySwitch.Evaluation {
 					throw new ArgumentOutOfRangeException("matchType");
 			}
 
-			// Cache the path matcher.
-			cachedMatchers.Add(matchType, pathMatcher);
+			// Cache the path matcher, if possible.
+			if (cachedMatchers != null) {
+				cachedMatchers.Add(matchType, pathMatcher);
+			}
 
 			return pathMatcher;
 		}

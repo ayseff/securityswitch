@@ -1,7 +1,15 @@
+// =================================================================================
+// Copyright © 2004-2011 Matt Sollars
+// All rights reserved.
+// 
+// This code and information is provided "as is" without warranty of any kind,
+// either expressed or implied, including, but not limited to, the implied 
+// warranties of merchantability and/or fitness for a particular purpose.
+// =================================================================================
 using SecuritySwitch.Abstractions;
 
 
-namespace SecuritySwitch {
+namespace SecuritySwitch.Redirection {
 	/// <summary>
 	/// A contract for a location redirector.
 	/// </summary>
