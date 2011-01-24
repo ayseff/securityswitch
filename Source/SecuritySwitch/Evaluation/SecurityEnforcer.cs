@@ -48,10 +48,10 @@ namespace SecuritySwitch.Evaluation {
 				} else {
 					// Build the appropriate URI.
 					var uri = new StringBuilder(baseTargetUrl);
-					uri.Append(request.CurrentExecutionFilePath).Append(request.Url.Query);
+					uri.Append(request.RawUrl);
 
 					// Normalize the URI.
-					uri.Replace("//", "/");
+					uri.Replace("//", "/", baseTargetUrl.Length - 1, uri.Length - baseTargetUrl.Length);
 
 					targetUrl = uri.ToString();
 				}

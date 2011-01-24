@@ -20,7 +20,7 @@ namespace SecuritySwitch.Tests.Evaluation {
 		public Settings Settings { get; set; }
 
 		public RequestEvaluatorTestFixture() {
-			Settings = new Settings {
+			var settings = new TestSettings {
 				Mode = Mode.On,
 				Paths = {
 					new TestPathSetting("/Info/ContactUs.aspx", PathMatchType.StartsWith, true, RequestSecurity.Insecure),
@@ -29,9 +29,14 @@ namespace SecuritySwitch.Tests.Evaluation {
 
 					new TestPathSetting("/info/contactus", PathMatchType.StartsWith, true, RequestSecurity.Insecure),
 					new TestPathSetting("/login/"),
-					new TestPathSetting("/admin/vieworders/")
+					new TestPathSetting("/admin/vieworders/"),
+
+					new TestPathSetting("/Manage")
 				}
 			};
+			settings.CallPostDeserialize();
+
+			Settings = settings;
 		}
 	}
 }

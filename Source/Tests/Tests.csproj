@@ -47,6 +47,7 @@
     <Compile Include="Evaluation\SecurityEnforcerTests.cs" />
     <Compile Include="Evaluation\StartsWithPathMatcherTests.cs" />
     <Compile Include="Evaluation\ExactPathMatcherTests.cs" />
+    <Compile Include="TestSettings.cs" />
     <Compile Include="TestPathSetting.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Redirection\LocationRedirectorTests.cs" />

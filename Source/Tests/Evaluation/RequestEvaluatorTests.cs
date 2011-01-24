@@ -109,5 +109,41 @@ namespace SecuritySwitch.Tests.Evaluation {
 			// Assert.
 			Assert.Equal(RequestSecurity.Secure, security);
 		}
+
+		[Fact]
+		public void EvaluateReturnsIgnoreAppropriatelyWhenRequestIsSystemHandler() {
+			// Arrange.
+			var pathsToTest = new[] {
+				"/",
+				"/Default.aspx",
+				"/Info/AboutUs.aspx",
+				"/info/aboutus/",
+
+				"/Manage/DownloadThatFile.axd",
+				"/Info/WebResource.axd?i=C3E19B2A-15F0-4174-A245-20F08C1DF4B8",
+				"/OtherResource.axd/additional/info",
+				"/trace.axd#details"
+			};
+			var results = new RequestSecurity[pathsToTest.Length];
+			var mockRequest = new Mock<HttpRequestBase>();
+			var requestEvaluator = new RequestEvaluator();
+
+			// Act.
+			for (var index = 0; index < pathsToTest.Length; index++) {
+				var path = pathsToTest[index];
+				mockRequest.SetupGet(req => req.Path).Returns(path);
+				results[index] = requestEvaluator.Evaluate(mockRequest.Object, _fixture.Settings);
+			}
+
+			// Assert.
+			Assert.NotEqual(RequestSecurity.Ignore, results[0]);
+			Assert.NotEqual(RequestSecurity.Ignore, results[1]);
+			Assert.NotEqual(RequestSecurity.Ignore, results[2]);
+			Assert.NotEqual(RequestSecurity.Ignore, results[3]);
+			Assert.Equal(RequestSecurity.Ignore, results[4]);
+			Assert.Equal(RequestSecurity.Ignore, results[5]);
+			Assert.Equal(RequestSecurity.Ignore, results[6]);
+			Assert.Equal(RequestSecurity.Ignore, results[7]);
+		}
 	}
 }

@@ -90,7 +90,7 @@ namespace SecuritySwitch.Configuration {
 		protected override void PostDeserialize() {
 			base.PostDeserialize();
 
-			// Validate the settings.
+			// Validate the base secure/insecure URI settings.
 			var isBaseInsecureUriEmpty = string.IsNullOrEmpty(BaseInsecureUri);
 			var isBaseSecureUriEmpty = string.IsNullOrEmpty(BaseSecureUri);
 			if (!isBaseInsecureUriEmpty && isBaseSecureUriEmpty || isBaseInsecureUriEmpty && !isBaseSecureUriEmpty) {
@@ -100,8 +100,8 @@ namespace SecuritySwitch.Configuration {
 
 			// Insert a special PathSetting to ignore system handlers, if indicated.
 			if (IgnoreSystemHandlers) {
-				Paths.Add(new PathSetting {
-					Path = @"\.axd[/\?#]?",
+				Paths.Insert(0, new PathSetting {
+					Path = @"\.axd[/\?#$]?",
 					MatchType = PathMatchType.Regex,
 					IgnoreCase = true,
 					Security = RequestSecurity.Ignore
