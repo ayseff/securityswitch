@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Login" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="Login.aspx.cs" Inherits="Login" %>
+﻿<%@ Page Title="Login" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" Inherits="ExampleWebSite.Login" Codebehind="Login.aspx.cs" %>
 <asp:Content ID="Content2" ContentPlaceHolderID="primaryContent" Runat="Server">
 	<h2>Login</h2>
 	<p>Login to access protected areas of this web site.</p>

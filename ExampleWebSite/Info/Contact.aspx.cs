@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
-public partial class Info_Contact : System.Web.UI.Page
-{
-    protected void Page_Load(object sender, EventArgs e)
-    {
 
-    }
+namespace ExampleWebSite.Info {
+	public partial class Contact : System.Web.UI.Page {
+		protected void Page_Load(object sender, EventArgs e) {}
+	}
 }

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Terms of Use" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="Terms.aspx.cs" Inherits="Legal_Terms" %>
+﻿<%@ Page Title="Terms of Use" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" Inherits="ExampleWebSite.Legal.Terms" Codebehind="Terms.aspx.cs" %>
 <asp:Content ID="Content2" ContentPlaceHolderID="primaryContent" runat="Server">
 	<h2>Terms of Use</h2>
 	<p>

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Contact Fictitious Company" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="Contact.aspx.cs" Inherits="Info_Contact" %>
+﻿<%@ Page Title="Contact Fictitious Company" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" Inherits="ExampleWebSite.Info.Contact" Codebehind="Contact.aspx.cs" %>
 <asp:Content ID="Content2" ContentPlaceHolderID="primaryContent" Runat="Server">
 	<h2>Contact Fictitious Company</h2>
 	<p>You don't <em>really</em> want to contact a fictitious company; do you?</p>

@@ -1,5 +1,4 @@
-﻿<%@ Page Title="Privacy Policy" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true"
-	CodeFile="Privacy.aspx.cs" Inherits="Legal_Privacy" %>
+﻿<%@ Page Title="Privacy Policy" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" Inherits="ExampleWebSite.Legal.Privacy" Codebehind="Privacy.aspx.cs" %>
 <asp:Content ID="Content2" ContentPlaceHolderID="primaryContent" runat="Server">
 	<h2>Privacy Policy</h2>
 	<p>

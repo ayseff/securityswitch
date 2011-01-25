@@ -6,6 +6,7 @@
 // either expressed or implied, including, but not limited to, the implied 
 // warranties of merchantability and/or fitness for a particular purpose.
 // =================================================================================
+
 using SecuritySwitch.Abstractions;
 using SecuritySwitch.Configuration;
 

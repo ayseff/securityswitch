@@ -7,6 +7,7 @@
 // warranties of merchantability and/or fitness for a particular purpose.
 // =================================================================================
 using System.Configuration;
+using System.Web;
 
 
 namespace SecuritySwitch.Configuration {
@@ -98,6 +99,11 @@ namespace SecuritySwitch.Configuration {
 					"If either baseInsecureUri or baseSecureUri are specified, then both must be provided.");
 			}
 
+			// Resolve any special tokens found in each PathSetting's path.
+			foreach (PathSetting pathSetting in Paths) {
+				ResolveAppRelativeToken(pathSetting);
+			}
+
 			// Insert a special PathSetting to ignore system handlers, if indicated.
 			if (IgnoreSystemHandlers) {
 				Paths.Insert(0, new PathSetting {
@@ -106,6 +112,17 @@ namespace SecuritySwitch.Configuration {
 					IgnoreCase = true,
 					Security = RequestSecurity.Ignore
 				});
+			}
+		}
+
+
+		/// <summary>
+		/// Resolves any application relative token (~/) to the application's virtual path.
+		/// </summary>
+		/// <param name="pathSetting">The PathSetting to evaluate.</param>
+		private static void ResolveAppRelativeToken(PathSetting pathSetting) {
+			if (pathSetting.Path.StartsWith("~/")) {
+				pathSetting.Path = pathSetting.Path.Replace("~/", VirtualPathUtility.AppendTrailingSlash(HttpRuntime.AppDomainAppVirtualPath));
 			}
 		}
 	}

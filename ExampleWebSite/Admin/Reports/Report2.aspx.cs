@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
-public partial class Admin_Reports_Report2 : System.Web.UI.Page
-{
-    protected void Page_Load(object sender, EventArgs e)
-    {
 
-    }
+namespace ExampleWebSite.Admin.Reports {
+	public partial class Report2 : System.Web.UI.Page {
+		protected void Page_Load(object sender, EventArgs e) {}
+	}
 }

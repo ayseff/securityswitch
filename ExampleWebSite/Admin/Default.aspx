@@ -1,5 +1,4 @@
-﻿<%@ Page Title="Admin Area" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true"
-	CodeFile="Default.aspx.cs" Inherits="Admin_Default" %>
+﻿<%@ Page Title="Admin Area" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" Inherits="ExampleWebSite.Admin.Default" Codebehind="Default.aspx.cs" %>
 <asp:Content ID="Content2" ContentPlaceHolderID="primaryContent" runat="Server">
 	<h2>Admin Area</h2>
 	<p>Welcome to the admin area!</p>
