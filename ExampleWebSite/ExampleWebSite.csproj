@@ -64,6 +64,13 @@
     <Compile Include="Admin\Reports\Report2.aspx.designer.cs">
       <DependentUpon>Report2.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Cms\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cms\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -121,6 +128,13 @@
     <Compile Include="Site.master.designer.cs">
       <DependentUpon>Site.master</DependentUpon>
     </Compile>
+    <Compile Include="SiteMap.ascx.cs">
+      <DependentUpon>SiteMap.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SiteMap.ascx.designer.cs">
+      <DependentUpon>SiteMap.ascx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Source\SecuritySwitch\SecuritySwitch.csproj">
@@ -132,6 +146,8 @@
     <Content Include="Admin\Default.aspx" />
     <Content Include="Admin\Reports\Report1.aspx" />
     <Content Include="Admin\Reports\Report2.aspx" />
+    <Content Include="App_Data\CmsContent.xml" />
+    <Content Include="Cms\Default.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="Info\About.aspx" />
     <Content Include="Info\Contact.aspx" />
@@ -146,8 +162,10 @@
     <Content Include="Admin\Web.config" />
     <Content Include="Manage\Web.config" />
     <Content Include="Site.master" />
+    <Content Include="SiteMap.ascx" />
     <Content Include="Web.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <ProjectExtensions>

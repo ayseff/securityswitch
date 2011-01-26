@@ -270,3 +270,40 @@ table.stretch {
 .error {
 	color: #F00;
 }
+
+
+/* Meta information */
+#meta {
+	background-color: #EEE;
+	border: 0.01em solid #CCC;
+	margin-top: 3.5em;
+	padding: 0.25em 0.5em;
+	clear: both;
+}
+#meta ul {
+	font-size: 85%;
+	margin: 0;
+}
+#meta li {
+	list-style: square inside;
+	margin: 0;
+}
+
+#siteMap {
+	background-color: #EEE;
+	border: 0.15em solid #999;
+	border-right: 0 none;
+	float: right;
+	padding: 0.5em;
+	margin-bottom: 1em;
+	width: 15em;
+}
+#siteMap table.menuItem td, #siteMap table.hoverMenuItem td {
+	border: 0.1em solid #EEE;
+	cursor: default;
+	padding: 0.5em 0.25em;
+}
+#siteMap table.hoverMenuItem td {
+	background-color: #CCC;
+	border: 0.1em solid #999;
+}

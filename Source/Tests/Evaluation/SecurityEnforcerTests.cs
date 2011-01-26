@@ -78,13 +78,15 @@ namespace SecuritySwitch.Tests.Evaluation {
 		}
 
 		[Fact]
-		public void GetUriReturnsUriBasedOnSuppliedBaseSecureUri() {
+		public void GetUriReturnsSwitchedUriBasedOnSuppliedBaseSecureUri() {
 			const string BaseRequestUri = "http://www.testsite.com";
-			const string PathRequestUri = "/Manage/Default.aspx?Param=SomeValue";
+			const string PathRequestUri = "/Manage/Default.aspx";
+			const string QueryRequestUri = "?Param=SomeValue";
 
 			var mockRequest = new Mock<HttpRequestBase>();
-			mockRequest.SetupGet(req => req.Url).Returns(new Uri(BaseRequestUri + PathRequestUri));
-			mockRequest.SetupGet(req => req.RawUrl).Returns(PathRequestUri);
+			mockRequest.SetupGet(req => req.ApplicationPath).Returns("/");
+			mockRequest.SetupGet(req => req.Url).Returns(new Uri(BaseRequestUri + PathRequestUri + QueryRequestUri));
+			mockRequest.SetupGet(req => req.Path).Returns(PathRequestUri);
 
 			var mockResponse = new Mock<HttpResponseBase>();
 			mockResponse.Setup(resp => resp.ApplyAppPathModifier(It.IsAny<string>())).Returns<string>(s => s);
@@ -102,17 +104,19 @@ namespace SecuritySwitch.Tests.Evaluation {
 																	 settings);
 
 			// Assert.
-			Assert.Equal(settings.BaseSecureUri + PathRequestUri.Remove(0, 1), targetUrl);
+			Assert.Equal(settings.BaseSecureUri + PathRequestUri.Remove(0, 1) + QueryRequestUri, targetUrl);
 		}
 
 		[Fact]
-		public void GetUriReturnsUriBasedOnSuppliedBaseInsecureUri() {
+		public void GetUriReturnsSwitchedUriBasedOnSuppliedBaseInsecureUri() {
 			const string BaseRequestUri = "https://www.testsite.com";
-			const string PathRequestUri = "/Info/Default.aspx?Param=SomeValue";
+			const string PathRequestUri = "/Info/Default.aspx";
+			const string QueryRequestUri = "?Param=SomeValue";
 
 			var mockRequest = new Mock<HttpRequestBase>();
-			mockRequest.SetupGet(req => req.Url).Returns(new Uri(BaseRequestUri + PathRequestUri));
-			mockRequest.SetupGet(req => req.RawUrl).Returns(PathRequestUri);
+			mockRequest.SetupGet(req => req.ApplicationPath).Returns("/");
+			mockRequest.SetupGet(req => req.Url).Returns(new Uri(BaseRequestUri + PathRequestUri + QueryRequestUri));
+			mockRequest.SetupGet(req => req.Path).Returns(PathRequestUri);
 			mockRequest.SetupGet(req => req.IsSecureConnection).Returns(true);
 
 			var mockResponse = new Mock<HttpResponseBase>();
@@ -131,7 +135,38 @@ namespace SecuritySwitch.Tests.Evaluation {
 																	 settings);
 
 			// Assert.
-			Assert.Equal(settings.BaseInsecureUri + PathRequestUri.Remove(0, 1), targetUrl);
+			Assert.Equal(settings.BaseInsecureUri + PathRequestUri.Remove(0, 1) + QueryRequestUri, targetUrl);
+		}
+
+		[Fact]
+		public void GetUriDoesNotIncludeApplicationPathWithSuppliedBaseUri() {
+			const string BaseRequestUri = "http://www.testsite.com";
+			const string ApplicationPathRequestUri = "/MySuperDuperApplication";
+			const string PathRequestUri = ApplicationPathRequestUri + "/Manage/Default.aspx";
+			const string QueryRequestUri = "?Param=SomeValue";
+
+			var mockRequest = new Mock<HttpRequestBase>();
+			mockRequest.SetupGet(req => req.ApplicationPath).Returns(ApplicationPathRequestUri);
+			mockRequest.SetupGet(req => req.Url).Returns(new Uri(BaseRequestUri + PathRequestUri + QueryRequestUri));
+			mockRequest.SetupGet(req => req.Path).Returns(PathRequestUri);
+
+			var mockResponse = new Mock<HttpResponseBase>();
+			mockResponse.Setup(resp => resp.ApplyAppPathModifier(It.IsAny<string>())).Returns<string>(s => s);
+
+			var settings = new Settings {
+				Mode = Mode.On,
+				BaseSecureUri = "https://secure.someotherwebsite.com/testsite/"
+			};
+			var enforcer = new SecurityEnforcer();
+
+			// Act.
+			var targetUrl = enforcer.GetUriForMatchedSecurityRequest(mockRequest.Object,
+																	 mockResponse.Object,
+																	 RequestSecurity.Secure,
+																	 settings);
+
+			// Assert.
+			Assert.Equal(settings.BaseSecureUri + PathRequestUri.Remove(0, ApplicationPathRequestUri.Length + 1) + QueryRequestUri, targetUrl);
 		}
 	}
 }

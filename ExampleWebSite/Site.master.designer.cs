@@ -30,6 +30,15 @@ public partial class Site {
     protected global::System.Web.UI.HtmlControls.HtmlForm siteForm;
     
     /// <summary>
+    /// SiteMap1 control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::ExampleWebSite.SiteMap SiteMap1;
+    
+    /// <summary>
     /// primaryContent control.
     /// </summary>
     /// <remarks>
