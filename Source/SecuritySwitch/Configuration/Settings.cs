@@ -7,6 +7,7 @@
 // warranties of merchantability and/or fitness for a particular purpose.
 // =================================================================================
 using System.Configuration;
+using System.Text.RegularExpressions;
 using System.Web;
 
 
@@ -107,7 +108,7 @@ namespace SecuritySwitch.Configuration {
 			// Insert a special PathSetting to ignore system handlers, if indicated.
 			if (IgnoreSystemHandlers) {
 				Paths.Insert(0, new PathSetting {
-					Path = @"\.axd[/\?#$]?",
+					Path = @"\.axd(?:[/\?#].*)$",
 					MatchType = PathMatchType.Regex,
 					IgnoreCase = true,
 					Security = RequestSecurity.Ignore
@@ -122,7 +123,16 @@ namespace SecuritySwitch.Configuration {
 		/// <param name="pathSetting">The PathSetting to evaluate.</param>
 		private static void ResolveAppRelativeToken(PathSetting pathSetting) {
 			if (pathSetting.Path.StartsWith("~/")) {
-				pathSetting.Path = pathSetting.Path.Replace("~/", VirtualPathUtility.AppendTrailingSlash(HttpRuntime.AppDomainAppVirtualPath));
+				// Get the application virtual path.
+				var appVirtualPath = VirtualPathUtility.AppendTrailingSlash(HttpRuntime.AppDomainAppVirtualPath);
+
+				// If the match type is Regex, be sure to escape the app virtual path.
+				if (pathSetting.MatchType == PathMatchType.Regex) {
+					appVirtualPath = Regex.Escape(appVirtualPath);
+				}
+
+				// Replace the app-relative token with the app virtual path.
+				pathSetting.Path = pathSetting.Path.Replace("~/", appVirtualPath);
 			}
 		}
 	}

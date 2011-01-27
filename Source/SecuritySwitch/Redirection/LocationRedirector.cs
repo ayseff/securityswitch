@@ -6,6 +6,8 @@
 // either expressed or implied, including, but not limited to, the implied 
 // warranties of merchantability and/or fitness for a particular purpose.
 // =================================================================================
+using System.Web;
+
 using SecuritySwitch.Abstractions;
 
 
@@ -31,7 +33,7 @@ namespace SecuritySwitch.Redirection {
 				// Also, add JavaScript to replace the current location as backup.
 				response.Write("<html><head><title></title>");
 				response.Write("<!-- <script language=\"javascript\">window.location.replace(\"");
-				response.Write(url);
+				response.Write(HttpUtility.HtmlEncode(url));
 				response.Write("\");</script> -->");
 				response.Write("</head><body></body></html>");
 			} else {

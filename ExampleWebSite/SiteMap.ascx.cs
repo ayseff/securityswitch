@@ -1,29 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.IO;
 using System.Text;
 using System.Web;
+using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml.XPath;
 
 
 namespace ExampleWebSite {
-	public partial class SiteMap : System.Web.UI.UserControl {
+	public partial class SiteMap : UserControl {
 		private string _applicationDirectory;
+		private Random _randomGen;
 
 		private string ApplicationDirectory {
-			get {
-				if (_applicationDirectory == null) {
-					_applicationDirectory = MapPath("~/");
-				}
-				return _applicationDirectory;
-			}
+			get { return (_applicationDirectory ?? (_applicationDirectory = MapPath("~/"))); }
 		}
 
 
 		protected void Page_Load(object sender, EventArgs e) {
 			if (!Page.IsPostBack) {
+				// Initialize the random engine.
+				_randomGen = new Random();
+
 				LoadMenu(MapPath("~/"), menuSiteMap.Items);
 			}
 		}
@@ -33,7 +32,10 @@ namespace ExampleWebSite {
 			var aspxFiles = Directory.GetFiles(startDirectory, "*.aspx");
 			foreach (var aspxFile in aspxFiles) {
 				var path = aspxFile.Remove(0, ApplicationDirectory.Length);
-				itemCollection.Add(new MenuItem(Path.GetFileNameWithoutExtension(aspxFile), path, null, "~/" + path.Replace('\\', '/')));
+				itemCollection.Add(new MenuItem(Path.GetFileNameWithoutExtension(aspxFile),
+				                                path,
+				                                null,
+				                                "~/" + path.Replace('\\', '/')));
 			}
 
 			// Add the directories.
@@ -106,25 +108,23 @@ namespace ExampleWebSite {
 			}
 		}
 
-		private static string GenerateRandomQueryParameters(string guaranteedParamName, string guaranteedParamValue) {
+		private string GenerateRandomQueryParameters(string guaranteedParamName, string guaranteedParamValue) {
 			var possibleParamsAndValues = new List<KeyValuePair<string, string[]>> {
 				new KeyValuePair<string, string[]>("cache", new[] { "on", "off", "auto" }),
 				new KeyValuePair<string, string[]>("environment", new[] { "Testing", "Development", "Staging", "Production" }),
-				new KeyValuePair<string, string[]>("author", new[] { "Matt", "John", "Sally", "Bill", "Jennifer", "Melissa", "Michael" })
+				new KeyValuePair<string, string[]>("author",
+				                                   new[] { "Matt", "John", "Sally", "Bill", "Jennifer", "Melissa", "Michael" })
 			};
 
-			// Initialize the random engine.
-			var randomGen = new Random();
-
 			// How many random params will be used?
-			var randomParamCount = randomGen.Next(possibleParamsAndValues.Count + 1);
+			var randomParamCount = _randomGen.Next(possibleParamsAndValues.Count + 1);
 
 			// Where will the guaranteed parameter go?
-			var guaranteedParamIndex = randomGen.Next(randomParamCount + 1);
-			
+			var guaranteedParamIndex = _randomGen.Next(randomParamCount + 1);
+
 			// Pick which random parameters will be in the result.
 			var parameters = new Dictionary<string, string>(randomParamCount + 1);
-			for (var i = 0; i < randomParamCount; i++) {
+			for (var i = 0; i < randomParamCount + 1; i++) {
 				// Add the guaranteed parameter where needed.
 				if (i == guaranteedParamIndex) {
 					parameters.Add(guaranteedParamName, guaranteedParamValue);
@@ -134,16 +134,16 @@ namespace ExampleWebSite {
 				// Pick a random param that is not already chosen.
 				var r = -1;
 				while (r == -1 || parameters.ContainsKey(possibleParamsAndValues[r].Key)) {
-					r = randomGen.Next(possibleParamsAndValues.Count);
+					r = _randomGen.Next(possibleParamsAndValues.Count);
 				}
 
 				// Choose a random value for the random param.
 				var param = possibleParamsAndValues[r];
-				var valueIndex = randomGen.Next(param.Value.Length);
+				var valueIndex = _randomGen.Next(param.Value.Length);
 				parameters.Add(param.Key, param.Value[valueIndex]);
 			}
 
-			
+
 			// Build the parameters.
 			var builder = new StringBuilder();
 			builder.Append("?");

@@ -101,7 +101,7 @@ namespace SecuritySwitch {
 
 			// Redirect.
 			var redirector = LocationRedirectorFactory.Create();
-			redirector.Redirect(wrappedResponse, HttpUtility.HtmlAttributeEncode(targetUrl), _settings.BypassSecurityWarning);
+			redirector.Redirect(wrappedResponse, targetUrl, _settings.BypassSecurityWarning);
 		}
 
 

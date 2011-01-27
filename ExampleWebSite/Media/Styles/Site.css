@@ -134,6 +134,12 @@ sup {
 img {
 	border: 0 none;
 }
+pre {
+	background-color: #666;
+	color: #DDD;
+	font-family: Consolas, Courier New, Monospace;
+	padding: 0.5em;
+}
 
 /* Lists */
 ul, ol {
@@ -296,12 +302,15 @@ table.stretch {
 	float: right;
 	padding: 0.5em;
 	margin-bottom: 1em;
-	width: 15em;
+	width: 10em;
 }
 #siteMap table.menuItem td, #siteMap table.hoverMenuItem td {
 	border: 0.1em solid #EEE;
 	cursor: default;
 	padding: 0.5em 0.25em;
+}
+#siteMap a, #siteMap a {
+	display: block;
 }
 #siteMap table.hoverMenuItem td {
 	background-color: #CCC;
