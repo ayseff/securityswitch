@@ -1,0 +1,318 @@
+﻿/* Template Styles */
+body {
+	background-color: #FFF;
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	font-size: 10pt;
+	color: #000;
+}
+#header {
+	background-color: #DDD;
+	padding: 1em;
+	margin-bottom: 0.3em;
+}
+#header #loginStatus {
+	float: right;
+	margin: 0.75em 0.5em 0 0;
+}
+#primaryNav {
+	background-color: #CCC;
+	padding: 0.5em;
+	margin-bottom: 0.6em;
+	height: 1.6em;
+}
+#primaryNav ul {
+	float: left;
+	margin: 0;
+}
+#primaryNav ul li {
+	position: relative;
+	float: left;
+	list-style-type: none;
+	margin: 0 1em 0 0;
+	text-align: center;
+}
+#primaryNav ul li a {
+	border: 0.1em #CCC solid;
+	color: #000;
+	display: block;
+	padding: 0.15em 0.5em;
+	text-decoration: none;
+}
+#primaryNav ul li a:hover {
+	background-color: #666;
+	border: 0.1em #FFF solid;
+	color: #FFF;
+	cursor: pointer;
+}
+#content {
+	margin: 1em;
+	min-height: 30em;	
+}
+#footer {
+	background-color: #CCC;
+	font-size: 0.7em;
+	padding: 0.75em;
+	margin-top: 0.6em;
+	height: 1.25em;
+}
+#footer #copyright {
+	float: left;
+}
+#footer #legal {
+	float: right;
+}
+
+
+/* Headers */
+h1, h2, h3, h4, h5, h6 {
+	font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+	font-weight: bold;
+}
+h1 {
+	font-size: 2em;
+}
+h2 {
+	font-size: 1.75em;
+}
+h3 {
+	font-size: 1.5em;
+}
+h4 {
+	font-size: 1.3em;
+}
+h5 {
+	font-size: 1.15em;
+	font-style: italic;
+}
+
+/* Anchors and Links */
+a {
+	color: #33F;
+	text-decoration: underline;
+}
+a:visited {
+	color: #99F;
+}
+a:hover {
+	text-decoration: none;
+}
+
+/* Standard elements */
+p {
+	line-height: 1.25em;
+	margin-top: 0.25em;
+	margin-bottom: 1em;
+}
+caption {
+	font-weight: bold;
+	padding-bottom: 0.75em;
+	text-align: center;
+}
+th {
+	font-weight: bold;
+}
+td {
+	vertical-align: top;
+}
+strong {
+	font-weight: bold;
+}
+
+emphasis, em {
+	font-style: italic;
+}
+
+sub {
+	font-size: 0.85em;
+	vertical-align: sub;
+}
+
+sup {
+	font-size: 0.85em;
+	vertical-align: super;
+}
+img {
+	border: 0 none;
+}
+pre {
+	background-color: #666;
+	color: #DDD;
+	font-family: Consolas, Courier New, Monospace;
+	padding: 0.5em;
+}
+
+/* Lists */
+ul, ol {
+	margin-left: 0;
+	margin-top: 0.75em;
+	margin-bottom: 1em;
+	padding: 0;
+}
+ul ul, ol ol {
+	margin-top: 0.25em;
+	margin-bottom: 0;
+}
+ul li, ol li {
+	margin-left: 2em;
+	margin-bottom: 0.3em;
+}
+
+ul li {
+	list-style-type: disc;
+}
+ul li ul li {
+	list-style-type: circle;
+}
+ul li ul li ul li {
+	list-style-type: square;
+}
+
+ol li {
+	list-style-type: decimal;
+}
+ol li ol li {
+	list-style-type: lower-alpha;
+}
+ol li ol li ol li {
+	list-style-type: lower-roman;
+}
+
+/* Forms */
+input, select, textarea {
+	font-size: 100%;
+}
+
+fieldset {
+	border: solid 1px #999;
+	border-bottom-color: #000;
+	border-right-color: #000;
+	display: inline;
+	padding: 0.5em 1em;
+	margin-bottom: 0.5em;
+	width: auto;
+}
+fieldset legend {
+	font-weight: bold;
+	margin: 0 0.5em 0.35em 0.5em;
+}
+fieldset label {
+	float: left;
+	text-align: right;
+	margin-right: 0.25em;
+	width: 7em;
+}
+fieldset .formButtons {
+	margin-left: 7.25em;
+}
+fieldset input[type=text], fieldset input[type=password] {
+	width: 20em;
+}
+input, button, select, textarea {
+	font-family: inherit;
+}
+
+fieldset div.field {
+	margin-bottom: 1.15em;
+}
+
+fieldset div.stacked label {
+	display: block;
+	float: none;
+	text-align: left;
+}
+fieldset div.stacked textarea {
+	width: 27.25em;
+	height: 10em;
+}
+
+/* Tables */
+td.numeric {
+	text-align: right;
+}
+td.center, th.center {
+	text-align: center;
+}
+td.middle, th.middle {
+	vertical-align: middle;
+}
+th.fitToContent, td.fitToContent {
+	width: 1%;
+}
+table.static {
+	white-space: inherit;
+}
+table.static th, th.static, td.static {
+	white-space: nowrap;
+}
+table.stretch {
+	width: 100%;
+}
+
+/* Other styles */
+.clear {
+	clear: both;
+}
+.floatLeft {
+	float: left;
+	margin-right: 0.75em;
+}
+.floatRight {
+	float: right;
+	margin-left: 0.75em;
+}
+.note {
+	font-size: 85%;
+	font-style: italic;
+}
+
+
+/* Alerts and Errors */
+.alert {
+	background-color: #FCC;
+	border: solid 0.25em #600;
+	color: #600;
+	padding: 0.5em;
+}
+.error {
+	color: #F00;
+}
+
+
+/* Meta information */
+#meta {
+	background-color: #EEE;
+	border: 0.01em solid #CCC;
+	margin-top: 3.5em;
+	padding: 0.25em 0.5em;
+	clear: both;
+}
+#meta ul {
+	font-size: 85%;
+	margin: 0;
+}
+#meta li {
+	list-style: square inside;
+	margin: 0;
+}
+
+#siteMap {
+	background-color: #EEE;
+	border: 0.15em solid #999;
+	border-right: 0 none;
+	float: right;
+	padding: 0.5em;
+	margin-bottom: 1em;
+	width: 10em;
+}
+#siteMap table.menuItem td, #siteMap table.hoverMenuItem td {
+	border: 0.1em solid #EEE;
+	cursor: default;
+	padding: 0.5em 0.25em;
+}
+#siteMap a, #siteMap a {
+	display: block;
+}
+#siteMap table.hoverMenuItem td {
+	background-color: #CCC;
+	border: 0.1em solid #999;
+}
