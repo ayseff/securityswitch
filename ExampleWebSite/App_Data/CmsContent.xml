@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages>
+	<page id="1" slug="groovy-page" title="Groovy Page">
+		<![CDATA[&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras non enim feugiat dolor hendrerit euismod. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nullam commodo hendrerit tristique. Aliquam posuere accumsan eros sit amet faucibus. Fusce vel sem ut est luctus facilisis ac a turpis. Donec odio augue, rhoncus id bibendum eget, condimentum quis tellus. Maecenas molestie elit sed dolor tempus ullamcorper. Morbi non purus nec eros sodales tempor vel quis erat. Sed pulvinar erat eget purus facilisis consectetur a porttitor tellus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nullam ut enim neque.&lt;/p&gt;
+&lt;p&gt;Aliquam erat volutpat. Morbi interdum libero nisl, nec placerat metus. Sed accumsan urna non neque feugiat a blandit sem suscipit. Quisque hendrerit posuere mattis. Sed consectetur blandit vulputate. Curabitur turpis felis, rhoncus et vulputate ac, feugiat in diam. Suspendisse suscipit urna sit amet massa consequat id tincidunt purus faucibus. Duis in sapien augue. Nunc pharetra nibh id justo rutrum imperdiet. Phasellus pellentesque elementum nibh, id volutpat quam auctor a. Nullam condimentum auctor tortor, at fringilla lectus interdum at. Vivamus vulputate nisl in sapien molestie feugiat. Nunc faucibus scelerisque elit ut feugiat. Nullam vitae felis sapien, non adipiscing lacus. Suspendisse urna purus, scelerisque sit amet eleifend eget, gravida eu neque. In dapibus cursus velit, non auctor quam condimentum mollis. Quisque ut lobortis enim. Pellentesque sapien lacus, mollis nec ultrices ac, lacinia non felis. Donec a odio nec erat imperdiet laoreet.&lt;/p&gt;
+&lt;p&gt;Proin eu turpis quis tellus venenatis lobortis non sit amet velit. Nulla facilisi. In urna quam, cursus vel eleifend ac, tristique ac dolor. Cras et massa ligula, fermentum tristique diam. Ut egestas dapibus massa, sit amet congue eros vulputate sit amet. Aenean a nisi in felis posuere dictum. Sed iaculis nibh ut metus cursus convallis. Fusce placerat facilisis laoreet. Nam posuere eleifend massa in fermentum. Vestibulum facilisis dapibus tincidunt. Sed consequat erat quis dui imperdiet ut blandit justo vestibulum. Morbi lacinia suscipit enim vitae sodales. Praesent neque tortor, pretium sed consectetur at, semper quis erat. Nullam id commodo risus. Vestibulum et augue felis, vitae tincidunt ipsum. In eros justo, commodo a sollicitudin a, tempus vitae nulla. Donec vehicula ligula vel orci gravida eu ultricies neque sodales. Donec ultrices quam eget turpis cursus vestibulum.&lt;/p&gt;
+&lt;p&gt;Maecenas cursus sapien vitae sem malesuada suscipit. Pellentesque vel condimentum metus. Donec vulputate risus eu turpis vulputate pellentesque. In fermentum arcu in lacus sagittis volutpat. Phasellus est justo, dictum ut volutpat varius, euismod eget nibh. Aenean venenatis iaculis laoreet. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nam mi ipsum, convallis id auctor fermentum, auctor a justo. Duis nec leo nibh. Morbi sit amet ante turpis. Aenean tristique iaculis ipsum in tempus. Aenean consectetur sem massa, ut consequat nulla. Aliquam tempor libero vitae lectus tincidunt facilisis. Integer id risus nec risus auctor cursus eget et nibh. Aenean dolor est, pharetra at semper a, suscipit id ligula. Pellentesque condimentum varius dapibus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Cras ac libero sollicitudin erat sollicitudin aliquet.&lt;/p&gt;
+&lt;p&gt;Aliquam sodales auctor pellentesque. Nam ac sollicitudin lacus. Quisque risus risus, tincidunt et condimentum bibendum, sollicitudin id lacus. Curabitur bibendum iaculis dignissim. Pellentesque in eros ac urna pulvinar varius. Nam vestibulum pulvinar vulputate. Pellentesque sit amet ipsum lacus. Quisque eget arcu eu ipsum rutrum bibendum et non ante. Nunc blandit elit sit amet diam placerat semper. Praesent eu tortor sollicitudin tortor semper viverra. Quisque in lectus eu purus egestas feugiat sed eu orci. Sed eu libero orci, ac molestie eros. Phasellus mollis egestas ipsum, in vehicula augue semper a. Nunc tempus erat ut metus sagittis auctor. Aliquam elit leo, luctus vulputate auctor non, lacinia vel velit. In hac habitasse platea dictumst.&lt;/p&gt;]]>
+	</page>
+	<page id="2" slug="learn-more-about-grooviness" title="Learn More About Grooviness">
+		<![CDATA[&lt;p&gt;Simply put, grooviness is...well, it's groovy!&lt;/p&gt;
+&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse viverra tortor et turpis sodales luctus ut at augue. Suspendisse bibendum egestas posuere. Sed sit amet turpis tortor. Sed ultrices turpis metus. Suspendisse a elit non nisl pretium pulvinar id id sem. Etiam eget arcu nibh. Donec dui nunc, semper id dictum vitae, accumsan sit amet nulla. Etiam eu tellus lectus, in convallis erat. Vivamus vitae est tellus, a malesuada lectus. Donec eget imperdiet risus.&lt;/p&gt;
+&lt;p&gt;Proin dapibus fringilla arcu eu condimentum. Vivamus luctus, massa et imperdiet accumsan, mauris nunc gravida augue, nec consequat ligula erat ultricies nisi. In hac habitasse platea dictumst. Aliquam ut tristique nisi. Morbi dapibus velit vitae neque ullamcorper ultricies varius erat commodo. In non lobortis nulla. Aenean imperdiet mauris id mauris consectetur rutrum. Maecenas iaculis molestie hendrerit. Maecenas leo libero, volutpat vitae sagittis ac, eleifend id metus. Integer porttitor suscipit orci, id egestas felis euismod id. Quisque vestibulum ligula eget sapien molestie vitae ullamcorper dolor laoreet. Morbi condimentum pellentesque vestibulum. Sed tincidunt, tortor facilisis ultricies posuere, eros urna malesuada nisi, venenatis mollis tellus mi sit amet ligula. Donec lacinia ante dictum tortor mattis tristique. Maecenas vehicula velit quis nisi iaculis sodales. Proin quis leo felis, et consequat lectus. Maecenas id mauris eget augue pulvinar dignissim. Curabitur eleifend mollis augue, sit amet facilisis libero ultrices vel. Vivamus vel lectus sed ante condimentum consequat.&lt;/p&gt;]]>
+	</page>
+	<page id="3" slug="resources-for-grooviness" title="Resources for Grooviness">
+		<![CDATA[&lt;p&gt;Listed are some of the resources on grooviness that we have gathered for your perusing pleasure. Enjoy!&lt;/p&gt;
+&lt;ul&gt;
+	&lt;li&gt;&lt;a href="http://en.wikipedia.org/wiki/Groovology" target="_blank"&gt;Groovology&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href="http://en.wikipedia.org/wiki/Austin_Powers_%28character%29" target="_blank"&gt;Austin Powers&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href="http://dictionary.reference.com/browse/groovy" target="_blank"&gt;Groovy Defined&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href="http://listen.grooveshark.com/" target="_blank"&gt;Groovy Music&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;]]>
+	</page>
+	<page id="24" slug="another-great-page" title="Another Great Page">
+		<![CDATA[&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas volutpat mauris ornare lectus tempor egestas. Integer vulputate leo sit amet arcu sodales vitae dapibus risus iaculis. Quisque mollis diam vitae lectus ultrices rhoncus. Aliquam justo quam, pretium tristique interdum non, suscipit ut diam. Nullam vitae eros urna. Quisque eleifend, nisi id rhoncus fringilla, mi nisl convallis odio, vitae posuere odio augue id erat. Donec semper diam purus, vel ultrices lectus. Aenean lacus nisl, vestibulum vel congue in, fringilla a turpis. Aenean sit amet mi mi, at consequat neque. Etiam fringilla iaculis pellentesque. Mauris placerat, ante id porttitor feugiat, ante dui dapibus lorem, ut consequat eros nulla nec sem. Sed auctor sodales purus, eu vehicula arcu suscipit quis. Pellentesque ac lorem a odio sagittis vestibulum id a sapien. Etiam gravida, ante vel tempor tristique, lacus nibh aliquam quam, semper imperdiet diam risus ut tellus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Sed ornare sem imperdiet diam mollis egestas. Phasellus in purus quis arcu fringilla vestibulum non nec nulla. Integer tempus justo vel mi pretium ultricies. &lt;/p&gt;
+&lt;ul&gt;
+ &lt;li&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit.&lt;/li&gt;
+ &lt;li&gt;Ut euismod nulla non turpis consectetur sed dapibus tellus feugiat.&lt;/li&gt;
+ &lt;li&gt;Fusce vel mauris in odio ornare tempor.&lt;/li&gt;
+ &lt;li&gt;Ut quis tellus vel neque malesuada vulputate.&lt;/li&gt;
+ &lt;li&gt;Pellentesque gravida sem suscipit ligula aliquet luctus.&lt;/li&gt;
+ &lt;li&gt;Cras in magna sem, sed sodales diam.&lt;/li&gt;
+ &lt;li&gt;Nam venenatis tempor risus, in varius nunc tristique a.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+ &lt;li&gt;Proin tempus venenatis ipsum, vitae rhoncus lorem mollis sit amet.&lt;/li&gt;
+ &lt;li&gt;Proin imperdiet faucibus magna, sed sollicitudin augue vestibulum a.&lt;/li&gt;
+ &lt;li&gt;Donec fringilla malesuada eros, nec vulputate nulla luctus at.&lt;/li&gt;
+ &lt;li&gt;Phasellus auctor nibh eget eros mattis blandit.&lt;/li&gt;
+ &lt;li&gt;Vivamus porttitor enim in nulla auctor molestie ut ac sapien.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+ &lt;li&gt;Cras ac risus sit amet sem tempus ultricies quis et leo.&lt;/li&gt;
+ &lt;li&gt;Pellentesque et arcu urna, sagittis viverra urna.&lt;/li&gt;
+ &lt;li&gt;In tristique mauris et felis varius ornare pellentesque velit mollis.&lt;/li&gt;
+ &lt;li&gt;Curabitur quis tortor eget nibh porttitor congue in eget velit.&lt;/li&gt;
+ &lt;li&gt;Morbi vitae augue tellus, a luctus risus.&lt;/li&gt;
+ &lt;li&gt;Phasellus eget lorem quam, nec pretium eros.&lt;/li&gt;
+&lt;/ul&gt;]]>
+	</page>
+</pages>
